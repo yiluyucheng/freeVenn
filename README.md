@@ -13,6 +13,7 @@ Make sure 'ggplot2' and 'ggforce' are successfully installed.
 
 **How to use**
 ```
+library('freeVenn')
 vlist <- list(groupA=sample(1:100, 80), groupB=sample(50:150, 70), groupC=sample(1:100, 60))
 ## default
 freeVenn(vlist)
