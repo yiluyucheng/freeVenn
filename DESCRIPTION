@@ -1,0 +1,21 @@
+Package: freeVenn
+Type: Package
+Title: What the Package Does (Title Case)
+Version: 0.1.0
+Authors@R: c(
+    person(
+      "Yucheng Wang", "Doe",
+      email = "wangyucheng511@gamil.com",
+      role = c("aut", "cre")
+    )
+  )
+Description: More about what it does (maybe more than one line).
+    Continuation lines should be indented.
+License: Apache License (== 2.0)
+Encoding: UTF-8
+RoxygenNote: 7.3.2
+Depends: ggplot2, ggforce
+NeedsCompilation: no
+Packaged: 2025-01-12 16:40:50 UTC; wangy
+Author: Yucheng Wang Doe [aut, cre]
+Maintainer: Yucheng Wang Doe <wangyucheng511@gamil.com>
