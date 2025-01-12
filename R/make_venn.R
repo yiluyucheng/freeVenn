@@ -31,7 +31,7 @@
     geom_text(data=label_text, aes(x=c_x, y=c_y, label=c_text), hjust=c('right', 'left'), vjust='bottom')+
     coord_fixed() +
     #xlim(c(NA, (max(dat$coord_x) +radii)*1.2))+
-    #theme_void() +
+    theme_void() +
     theme(legend.position="none")
 }
 
@@ -129,7 +129,7 @@
     geom_text(data=label_text, aes(x=c_x, y=c_y, label=c_text, hjust='center', vjust='middle'))+
     coord_fixed() +
     #xlim(c(NA, (max(dat$coord_x) +radii)*1.2))+
-    #theme_void() +
+    theme_void() +
     theme(legend.position="none")
 }
 
