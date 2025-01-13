@@ -1,5 +1,5 @@
 # freeVenn
-Give you more freedom to draw Venn diagrams
+It provides much more freedom for creating Venn diagrams and supports configurations for two, three, or four sets.
 
 **Install from Github**
 ```R
@@ -23,4 +23,9 @@ freeVenn(vlist, weighted=TRUE)
 
 ## optimize Weighted
 #' freeVenn(vlist, weighted=TRUE, Optimize=TRUE)
+
+## Set your own colours
+freeVenn(vlist, weighted=TRUE, Optimize=TRUE, alpha=0.4) + 
+  scale_fill_manual(values=c('green', 'red', 'blue'))
 ```
+
