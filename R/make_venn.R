@@ -1,7 +1,7 @@
 # library(ggplot2)
 # library(ggforce)
 
-.freeVenn2 <- function(vlist, weighted=FALSE, radii=1, alpha=0.6){
+.freeVenn2 <- function(vlist, weighted=FALSE, radii=1, alpha=0.5, linewidth=1, ...){
   # vlist <- list(groupA=sample(1:100, 60), groupB=sample(1:100, 50))
   intersections <- compare_all_group_intersections(vlist)
   #intersections$"2" <- 0
@@ -18,7 +18,7 @@
     radiusA = radiusB <- radii
   }
 
-  dat <- data.frame(coord_x=c(0, cB_x), coord_y=c(0, 0), radii=c(radiusA, radiusB), groups=names(vlist))
+  dat <- data.frame(coord_x=c(0, cB_x), coord_y=c(0, 0), radii=c(radiusA, radiusB), group=names(vlist))
   r_x <-  0.5 * c(cB_x - radiusB - radiusA, radiusA + radiusB + cB_x, radiusA + cB_x - radiusB)
   num_text <- data.frame(c_x=r_x, c_y=c(0, 0, 0), c_text=unlist(intersections))
   num_text <- num_text[num_text$c_text > 0, ] ####### catious here
@@ -26,9 +26,9 @@
   label_text <- data.frame(c_x=r_x_g, c_y=c(1.1*radiusA, 1.1*radiusB), c_text=names(vlist))
 
   ggplot(data = dat) +
-    geom_circle(aes(x0=coord_x, y0=coord_y, r=radii, fill=groups), color=NA, alpha=alpha) +
+    geom_circle(aes(x0=coord_x, y0=coord_y, r=radii, fill=group, color=group), alpha=alpha, lwd=linewidth) +
     geom_text(data=num_text, aes(x=c_x, y=c_y, label=c_text), hjust='center', vjust='middle')+
-    geom_text(data=label_text, aes(x=c_x, y=c_y, label=c_text), hjust=c('right', 'left'), vjust='bottom')+
+    geom_text(data=label_text, aes(x=c_x, y=c_y, label=c_text), hjust=c('right', 'left'), vjust='bottom', ...)+
     coord_fixed() +
     #xlim(c(NA, (max(dat$coord_x) +radii)*1.2))+
     theme_void() +
@@ -36,8 +36,7 @@
 }
 
 
-.freeVenn3 <- function(vlist, weighted=FALSE, radii=1, alpha=0.6, Optimize=FALSE){
-  # vlist <- list(groupA=sample(1:100, 50), groupB=sample(1:100, 40), groupC=sample(1:100, 20))
+.freeVenn3 <- function(vlist, weighted=FALSE, Optimize=FALSE, radii=1, alpha=0.5, linewidth=1, ...){
   # freeVenn(vlist)
   intersections <- compare_all_group_intersections(vlist)
   #intersections$"1-2" <- 0
@@ -97,7 +96,7 @@
   p_A <- c(0, 0)
   p_B <- c(cB_x, 0)
   p_C <- c(cC_x, cC_y)
-  dat <- data.frame(coord_x=c(p_A[1], p_B[1], p_C[1]), coord_y=c(p_A[2], p_B[2], p_C[2]), radii=c(radiusA, radiusB, radiusC), groups=names(vlist))
+  dat <- data.frame(coord_x=c(p_A[1], p_B[1], p_C[1]), coord_y=c(p_A[2], p_B[2], p_C[2]), radii=c(radiusA, radiusB, radiusC), group=names(vlist))
   P_BC <- find_third_point(p_C, p_B, radiusB, radiusC, sort_x=TRUE)
   P_AC <- find_third_point(p_C, p_A, radiusA, radiusC, sort_x=TRUE)
   P_AB <- find_third_point(p_B, p_A, radiusA, radiusB)
@@ -124,9 +123,9 @@
 
 
   ggplot(data = dat) +
-    geom_circle(aes(x0=coord_x, y0=coord_y, r=radii, fill=groups), color=NA, alpha=alpha) +
+    geom_circle(aes(x0=coord_x, y0=coord_y, r=radii, fill=group, color=group), alpha=alpha, lwd=linewidth) +
     geom_text(data=num_text, aes(x=c_x, y=c_y, label=c_text, hjust='center', vjust='middle'))+
-    geom_text(data=label_text, aes(x=c_x, y=c_y, label=c_text, hjust='center', vjust='middle'))+
+    geom_text(data=label_text, aes(x=c_x, y=c_y, label=c_text, hjust='center', vjust='middle'), ...)+
     coord_fixed() +
     #xlim(c(NA, (max(dat$coord_x) +radii)*1.2))+
     theme_void() +
@@ -134,7 +133,7 @@
 }
 
 
-.freeVenn4 <- function(tlist, alpha=0.6){
+.freeVenn4 <- function(tlist, alpha=0.5, linewidth=1, ...){
   angle <- 0.75
   intersections <- compare_all_group_intersections(tlist)
   num_text <- data.frame(c_x=c(-5.5, -2.5, 2.5, 5.5, -3.3, -2.8, 0, 0, 2.8, 3.3, -1.8, 1.2, -1.2, 1.8, 0),
@@ -147,9 +146,9 @@
                           angle=c(angle, 0.8*angle, -0.8*angle, -angle), group=names(tlist))
 
   ggplot(d_ellipse) +
-    geom_ellipse(aes(x0 = e_x, y0 = e_y, a = 3, b = 6, angle = angle, fill=group), alpha= alpha, lwd=0.2) +
+    geom_ellipse(aes(x0 = e_x, y0 = e_y, a = 3, b = 6, angle = angle, fill=group, color=group), alpha= alpha, lwd=linewidth) +
     geom_text(data=num_text, aes(x=c_x, y=c_y, label=c_text), hjust='center', vjust='middle')+
-    geom_text(data=label_text, aes(x=c_x, y=c_y, label=c_text), size = 6, hjust=c('right', 'center', 'center', 'left'), vjust='bottom')+
+    geom_text(data=label_text, aes(x=c_x, y=c_y, label=c_text), hjust=c('right', 'center', 'center', 'left'), vjust='bottom', ...)+
     theme_void() +
     theme(legend.position="none") +
     coord_fixed()

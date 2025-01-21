@@ -4,7 +4,7 @@ Title: What the Package Does (Title Case)
 Version: 0.1.0
 Authors@R: c(
     person(
-      "Yucheng Wang", "Doe",
+      "Yucheng", "Wang",
       email = "wangyucheng511@gamil.com",
       role = c("aut", "cre")
     )
@@ -15,7 +15,9 @@ License: Apache License (== 2.0)
 Encoding: UTF-8
 RoxygenNote: 7.3.2
 Depends: ggplot2, ggforce
+Suggests: knitr, rmarkdown
+VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2025-01-12 16:40:50 UTC; wangy
-Author: Yucheng Wang Doe [aut, cre]
-Maintainer: Yucheng Wang Doe <wangyucheng511@gamil.com>
+Packaged: 2025-01-21 21:42:59 UTC; wangy
+Author: Yucheng Wang [aut, cre]
+Maintainer: Yucheng Wang <wangyucheng511@gamil.com>

@@ -1,0 +1,67 @@
+---
+title: "introduction"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{introduction}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Load package and prepare input, the input is a list contains two, three or four vectors.
+
+```{r}
+library(freeVenn)
+set.seed(123)  # Set the seed to ensures reproducibility
+
+vlist <- list(
+  groupA=sample(1:100, 80), 
+  groupB=sample(50:150, 70), 
+  groupC=sample(1:100, 60)
+)
+
+```
+
+You can make standard (unweighted) Venn diagram with default setting.
+
+```{r}
+freeVenn(vlist)
+```
+
+By setting `weighted=TRUE` to make weighted Venn diagram in which the sizes of the regions are proportional to their corresponding values.
+
+The `freeVenn` function returns a ggplot2 object, this makes it easy to customize the plot, for example, you can specify different colors using ggplot2 grammars.
+
+```{r}
+freeVenn(vlist, weighted=TRUE, color=c('red', 'green', 'blue'), fontface='bold') + 
+  scale_fill_manual(values=c('#ff70a6', '#70d6ff', '#ffd670'))
+
+```
+
+It works for a list with four sets.
+```{r}
+vlist4 <- list(groupA=sample(1:100, 80), groupB=sample(50:150, 70), groupC=sample(1:100, 60), groupD=sample(50:150, 70))
+
+freeVenn(vlist4)
+```
+
+It works for list with two sets.
+
+```{r}
+vlist2 <- list(groupA=sample(1:100, 80), groupB=sample(50:150, 30))
+
+freeVenn(vlist2, weighted=TRUE)
+```
+```{r}
+freeVenn(vlist, radii=0.8)
+```
+
+```{r}
+freeVenn(vlist, radii=1.5)
+```
