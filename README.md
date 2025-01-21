@@ -29,3 +29,6 @@ freeVenn(vlist, weighted=TRUE, Optimize=TRUE, alpha=0.4) +
   scale_fill_manual(values=c('green', 'red', 'blue'))
 ```
 
+**Please refer the below tutorial for more information**
+https://yiluyucheng.github.io/freeVenn/introduction.html
+
