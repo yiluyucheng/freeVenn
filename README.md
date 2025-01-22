@@ -29,6 +29,12 @@ freeVenn(vlist, weighted=TRUE, Optimize=TRUE, alpha=0.4) +
   scale_fill_manual(values=c('green', 'red', 'blue'))
 ```
 
+Some nice results:
+
+<img width="960" src="https://github.com/yiluyucheng/freeVenn/blob/main/examples/example.png">
+
+
 **Please refer the below tutorial for more information**
+
 https://yiluyucheng.github.io/freeVenn/introduction.html
 
