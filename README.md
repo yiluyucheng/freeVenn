@@ -12,21 +12,51 @@ devtools::install_github("yiluyucheng/freeVenn")
 Make sure 'ggplot2' and 'ggforce' are successfully installed.
 
 **How to use**
-```
-library('freeVenn')
-vlist <- list(groupA=sample(1:100, 80), groupB=sample(50:150, 70), groupC=sample(1:100, 60))
-## default
-freeVenn(vlist)
 
+
+```
+## Load package and prepare input data
+
+library(freeVenn)
+set.seed(123)  # Set the seed to ensures reproducibility
+
+vlist <- list(groupA=sample(1:100, 80), groupB=sample(50:150, 70), groupC=sample(1:100, 60))
+
+#### unweighted Venn ####
+## default
+freeVenn(vlist) # Figure a
+
+## Modify the radius of circles to adjust the overlapping proportions
+## Set the transparency parameter alpha = 0 to make the circles empty.
+freeVenn(vlist, radii=0.7, alpha=0) # Figure b
+
+## Modify the 'color' parameter to set your favourite colour code for the outer lines of the circles
+freeVenn(vlist, radii=1.5, alpha=0.2, color=c('red', 'green', 'blue'), fontface='bold') # Figure c
+
+
+#### Weighted Venn diagram ####
 ## rough Weighted
-freeVenn(vlist, weighted=TRUE)
+freeVenn(vlist, weighted=TRUE) # Figure d
 
 ## optimize Weighted
-#' freeVenn(vlist, weighted=TRUE, Optimize=TRUE)
+## Use 'scale_fill_manual' to modify the colors of filled areas of circles.
+freeVenn(vlist, weighted=TRUE, color=c('red', 'green', 'blue'), fontface='bold') + 
+  scale_fill_manual(values=c('#ff70a6', '#70d6ff', '#ffd670')) # Figure e
 
-## Set your own colours
-freeVenn(vlist, weighted=TRUE, Optimize=TRUE, alpha=0.4) + 
-  scale_fill_manual(values=c('green', 'red', 'blue'))
+## Empty circles and modify the width and type of circles.
+freeVenn(vlist, weighted=TRUE, Optimize=TRUE, linewidth=1.2, linetype=2, alpha=0) +
+    scale_color_manual(values=c('#ff70a6', '#70d6ff', '#ffd670')) # Figure f
+
+### Make Venn diagrams for two and four sets###
+vlist2 <- list(groupA=sample(1:100, 80), groupB=sample(60:150, 40))
+vlist4 <- list(groupA=sample(1:100, 80), groupB=sample(50:150, 70), groupC=sample(1:100, 60), groupD=sample(40:200, 60))
+
+freeVenn(vlist2)   # Figure g
+
+## set linewidth=0 to hidden outer lines of circles
+freeVenn(vlist2, weighted=TRUE, linewidth=0) # Figure h
+
+freeVenn(vlist4, alpha=0.2) # Figure i
 ```
 
 Some nice results:
@@ -34,7 +64,7 @@ Some nice results:
 <img width="960" src="https://github.com/yiluyucheng/freeVenn/blob/main/examples/example.png">
 
 
-**Please refer the below tutorial for more information**
+**Please refer to the below tutorial for additional information**
 
 https://yiluyucheng.github.io/freeVenn/introduction.html
 
