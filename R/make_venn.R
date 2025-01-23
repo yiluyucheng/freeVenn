@@ -1,7 +1,7 @@
 # library(ggplot2)
 # library(ggforce)
 
-.freeVenn2 <- function(vlist, weighted=FALSE, radii=1, alpha=0.5, linewidth=1, ...){
+.freeVenn2 <- function(vlist, weighted=FALSE, radii=1, alpha=0.5, linewidth=1, linetype=1, ...){
   # vlist <- list(groupA=sample(1:100, 60), groupB=sample(1:100, 50))
   intersections <- compare_all_group_intersections(vlist)
   #intersections$"2" <- 0
@@ -26,7 +26,8 @@
   label_text <- data.frame(c_x=r_x_g, c_y=c(1.1*radiusA, 1.1*radiusB), c_text=names(vlist))
 
   ggplot(data = dat) +
-    geom_circle(aes(x0=coord_x, y0=coord_y, r=radii, fill=group, color=group), alpha=alpha, lwd=linewidth) +
+    geom_circle(aes(x0=coord_x, y0=coord_y, r=radii, fill=group, color=group),
+                alpha=alpha, lwd=linewidth, lty=linetype) +
     geom_text(data=num_text, aes(x=c_x, y=c_y, label=c_text), hjust='center', vjust='middle')+
     geom_text(data=label_text, aes(x=c_x, y=c_y, label=c_text), hjust=c('right', 'left'), vjust='bottom', ...)+
     coord_fixed() +
@@ -36,7 +37,7 @@
 }
 
 
-.freeVenn3 <- function(vlist, weighted=FALSE, Optimize=FALSE, radii=1, alpha=0.5, linewidth=1, ...){
+.freeVenn3 <- function(vlist, weighted=FALSE, Optimize=FALSE, radii=1, alpha=0.5, linewidth=1, linetype=1, ...){
   # freeVenn(vlist)
   intersections <- compare_all_group_intersections(vlist)
   #intersections$"1-2" <- 0
@@ -123,7 +124,8 @@
 
 
   ggplot(data = dat) +
-    geom_circle(aes(x0=coord_x, y0=coord_y, r=radii, fill=group, color=group), alpha=alpha, lwd=linewidth) +
+    geom_circle(aes(x0=coord_x, y0=coord_y, r=radii, fill=group, color=group),
+                alpha=alpha, lwd=linewidth, lty=linetype) +
     geom_text(data=num_text, aes(x=c_x, y=c_y, label=c_text, hjust='center', vjust='middle'))+
     geom_text(data=label_text, aes(x=c_x, y=c_y, label=c_text, hjust='center', vjust='middle'), ...)+
     coord_fixed() +
@@ -133,7 +135,7 @@
 }
 
 
-.freeVenn4 <- function(tlist, alpha=0.5, linewidth=1, ...){
+.freeVenn4 <- function(tlist, alpha=0.5, linewidth=1, linetype=1, ...){
   angle <- 0.75
   intersections <- compare_all_group_intersections(tlist)
   num_text <- data.frame(c_x=c(-5.5, -2.5, 2.5, 5.5, -3.3, -2.8, 0, 0, 2.8, 3.3, -1.8, 1.2, -1.2, 1.8, 0),
@@ -146,7 +148,8 @@
                           angle=c(angle, 0.8*angle, -0.8*angle, -angle), group=names(tlist))
 
   ggplot(d_ellipse) +
-    geom_ellipse(aes(x0 = e_x, y0 = e_y, a = 3, b = 6, angle = angle, fill=group, color=group), alpha= alpha, lwd=linewidth) +
+    geom_ellipse(aes(x0 = e_x, y0 = e_y, a = 3, b = 6, angle = angle, fill=group, color=group),
+                 alpha= alpha, lwd=linewidth, lty=linetype) +
     geom_text(data=num_text, aes(x=c_x, y=c_y, label=c_text), hjust='center', vjust='middle')+
     geom_text(data=label_text, aes(x=c_x, y=c_y, label=c_text), hjust=c('right', 'center', 'center', 'left'), vjust='bottom', ...)+
     theme_void() +
