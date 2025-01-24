@@ -1,6 +1,6 @@
 # freeVenn
 
-**freeVenn: An R Package Offering Greater Freedom for Creating Venn Diagrams with ggplot2**.
+**freeVenn: A R Package Offering Greater Freedom for Creating Venn Diagrams with ggplot2**.
 
 freeVenn allows you to create Venn diagrams with two, three, or four sets.
 
