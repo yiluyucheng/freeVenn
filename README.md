@@ -19,7 +19,7 @@ If you have benefited from this package in any way, we kindly ask you cite this 
 ```
 @misc{freeVenn,
   author = {Yucheng Wang},
-  title = {freeVenn: An R Package Offering Greater Freedom for Creating Venn Diagrams with ggplot2},
+  title = {freeVenn: A R Package Offering Greater Freedom for Creating Venn Diagrams with ggplot2},
   year = {2025},
   publisher = {GitHub},
   url = {https://github.com/yiluyucheng/freeVenn}
