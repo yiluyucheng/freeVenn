@@ -1,17 +1,36 @@
 # freeVenn
-It provides much more freedom for creating Venn diagrams and supports configurations for two, three, or four sets.
 
-**Install from Github**
+**freeVenn: An R Package Offering Greater Freedom for Creating Venn Diagrams with ggplot2**.
+
+freeVenn allows you to create Venn diagrams with two, three, or four sets.
+
+### 1. Install from Github
+
 ```R
 ## Make sure 'devetools' is installed in your R
 # install.packages("devtools")
 devtools::install_github("yiluyucheng/freeVenn")
 ```
-**Dependency**
 
-Make sure 'ggplot2' and 'ggforce' are successfully installed.
+### 2. Citation
+Your citation encourages me to make this package better! 
 
-**How to use**
+If you have benefited from this package in any way, we kindly ask you cite this work:
+```
+@misc{freeVenn,
+  author = {Yucheng Wang},
+  title = {freeVenn: An R Package Offering Greater Freedom for Creating Venn Diagrams with ggplot2},
+  year = {2025},
+  publisher = {GitHub},
+  url = {https://github.com/yiluyucheng/freeVenn}
+}
+```
+
+### 3. Dependency
+
+Make sure '**ggplot2**' and '**ggforce**' are successfully installed.
+
+### 4. How to use
 
 
 ```
@@ -59,7 +78,7 @@ freeVenn(vlist2, weighted=TRUE, linewidth=0) # Figure h
 freeVenn(vlist4, alpha=0.2) # Figure i
 ```
 
-Some nice results:
+Plots generated from above codes:
 
 <img width="960" src="https://github.com/yiluyucheng/freeVenn/blob/main/examples/example.png">
 
@@ -67,4 +86,7 @@ Some nice results:
 **Please refer to the below tutorial for additional information**
 
 https://yiluyucheng.github.io/freeVenn/introduction.html
+
+### Contact me
+wangyucheng511@gmail.com
 
