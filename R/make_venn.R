@@ -29,7 +29,8 @@
     geom_circle(aes(x0=coord_x, y0=coord_y, r=radii, fill=group, color=group),
                 alpha=alpha, lwd=linewidth, lty=linetype) +
     geom_text(data=num_text, aes(x=c_x, y=c_y, label=c_text), hjust='center', vjust='middle')+
-    geom_text(data=label_text, aes(x=c_x, y=c_y, label=c_text), hjust=c('right', 'left'), vjust='bottom', ...)+
+    # geom_text(data=label_text, aes(x=c_x, y=c_y, label=c_text), hjust=c('right', 'left'), vjust='bottom', ...)+
+    geom_text(data=label_text, aes(x=c_x, y=c_y, label=c_text), hjust='center', vjust='bottom', ...)+
     coord_fixed() +
     #xlim(c(NA, (max(dat$coord_x) +radii)*1.2))+
     theme_void() +
